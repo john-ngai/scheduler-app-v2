@@ -2,6 +2,7 @@
   "name": "scheduler-app-v2",
   "version": "0.1.0",
   "private": true,
+  "author": "John Ngai",
   "license": "UNLICENSED",
   "scripts": {
     "start": "react-scripts start",
