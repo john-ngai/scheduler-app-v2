@@ -3,27 +3,27 @@
  * All Rights Reserved
  */
 
+import { Box, Paper, type SxProps, type Theme } from '@mui/material'
 import React from 'react'
-import './App.css'
-import logo from './logo.svg'
 
-export const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  )
+const styles: Record<string, SxProps<Theme>> = {
+  box: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  paper: {
+    width: '50vw',
+    height: '50vh',
+    marginTop: 10,
+  },
 }
+
+export const App: React.FC = () => (
+  <Box sx={styles.box}>
+    <Paper sx={styles.paper} elevation={4}>
+      Hello world
+    </Paper>
+  </Box>
+)
