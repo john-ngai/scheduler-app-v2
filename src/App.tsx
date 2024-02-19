@@ -16,6 +16,25 @@ import {
 } from '@mui/material'
 import React, { useCallback, useState } from 'react'
 
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
+
+interface FormValues {
+  month: string
+}
+
 const styles: Record<string, SxProps<Theme>> = {
   box: {
     height: '100vh',
@@ -38,10 +57,13 @@ const styles: Record<string, SxProps<Theme>> = {
 }
 
 export const App: React.FC = () => {
-  const [value, setValue] = useState<string>('')
+  const [formValues, setFormValues] = useState<FormValues>({
+    month: 'January',
+  })
 
-  const onChange = useCallback(
-    (event: SelectChangeEvent) => setValue(event.target.value),
+  const onChangeMonth = useCallback(
+    (event: SelectChangeEvent) =>
+      setFormValues((prev) => ({ ...prev, month: event.target.value })),
     []
   )
 
@@ -49,17 +71,18 @@ export const App: React.FC = () => {
     <Box sx={styles.box}>
       <Paper sx={styles.paper} elevation={4}>
         <FormControl sx={styles.formControl}>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+          <InputLabel id="select-month">Month</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={value}
-            label="Age"
-            onChange={onChange}
+            labelId="select-month"
+            value={formValues.month}
+            label="month"
+            onChange={onChangeMonth}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {months.map((month, index) => (
+              <MenuItem key={index} value={month}>
+                {month}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Paper>
