@@ -15,6 +15,7 @@ import {
   type Theme,
 } from '@mui/material'
 import React, { useCallback, useState } from 'react'
+import { DatePicker } from './DatePicker'
 
 const months = [
   'January',
@@ -85,6 +86,7 @@ export const App: React.FC = () => {
             ))}
           </Select>
         </FormControl>
+        <DatePicker />
       </Paper>
     </Box>
   )
