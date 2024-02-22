@@ -19,6 +19,7 @@ import React, { PropsWithChildren, useCallback, useState } from 'react'
 const styles: Record<string, SxProps<Theme>> = {
   box: {
     height: '100vh',
+    marginTop: 10,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -26,7 +27,7 @@ const styles: Record<string, SxProps<Theme>> = {
   paper: {
     width: '50vw',
     height: '50vh',
-    marginTop: 10,
+    padding: 4,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -37,7 +38,7 @@ export const Container: React.FC<PropsWithChildren> = ({ children }) => {
   const { box, paper } = styles
   return (
     <Box sx={box}>
-      <Paper sx={paper} elevation={4}>
+      <Paper sx={paper} elevation={3}>
         {children}
       </Paper>
     </Box>
