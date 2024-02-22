@@ -4,8 +4,7 @@
  */
 
 import React from 'react'
-import { DatePicker } from './DatePicker'
-import { Container } from './components'
+import { Container, DatePicker } from './components'
 
 export const App: React.FC = () => {
   return (
