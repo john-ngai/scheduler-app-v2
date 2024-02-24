@@ -4,6 +4,7 @@
   "private": true,
   "author": "John Ngai",
   "license": "UNLICENSED",
+  "type": "module",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
