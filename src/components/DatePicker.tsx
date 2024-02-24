@@ -5,40 +5,44 @@
 
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
-import { getDate, getMonth, getYear } from 'date-fns'
+import { format, getDate, getMonth, getYear } from 'date-fns'
 import { enUS } from 'date-fns/locale/en-US'
 import { useCallback, useMemo, useState } from 'react'
 
 export const DatePicker: React.FC = () => {
-  const initialDate = useMemo(() => {
+  const initialDateElements = useMemo(() => {
     const dateNow = Date.now()
-    const year = getDate(dateNow)
-    const month = getMonth(dateNow) + 1
-    const day = getYear(dateNow)
-    return { dateNow, year, month, day }
+    const year = getYear(dateNow)
+    const monthIndex = getMonth(dateNow)
+    const day = getDate(dateNow)
+    return { dateNow, year, monthIndex, day }
   }, [])
 
-  const [date, setDate] = useState(initialDate)
+  const [dateElements, setDateElements] = useState(initialDateElements)
+
+  const { dateNow, year, monthIndex, day } = dateElements
+  const date = format(new Date(year, monthIndex, day), 'yyyy-MM-dd')
+  console.log('date =', date)
 
   const onDayChange = useCallback((value: number | null) => {
     const day = getDate(value as number)
-    setDate((prev) => ({ ...prev, day }))
+    setDateElements((prev) => ({ ...prev, day }))
   }, [])
 
   const onMonthChange = useCallback((value: number) => {
-    const month = getMonth(value) + 1
-    setDate((prev) => ({ ...prev, month }))
+    const monthIndex = getMonth(value)
+    setDateElements((prev) => ({ ...prev, monthIndex }))
   }, [])
 
   const onYearChange = useCallback((value: number) => {
     const year = getYear(value)
-    setDate((prev) => ({ ...prev, year }))
+    setDateElements((prev) => ({ ...prev, year }))
   }, [])
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={enUS}>
       <DesktopDatePicker
-        value={date.dateNow}
+        value={dateNow}
         onChange={onDayChange}
         onMonthChange={onMonthChange}
         onYearChange={onYearChange}
