@@ -24,7 +24,7 @@ export const DatePicker: React.FC = () => {
   const date = format(new Date(year, monthIndex, day), 'yyyy-MM-dd')
   console.log('date =', date)
 
-  const onDayChange = useCallback((value: number | null) => {
+  const onDayChange = useCallback((value: number) => {
     const day = getDate(value as number)
     setDateElements((prev) => ({ ...prev, day }))
   }, [])
