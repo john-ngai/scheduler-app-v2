@@ -29,8 +29,8 @@ const timeSlots = [
 ]
 
 export const TimePicker: React.FC = () => {
-  const [startTime, setStartTime] = useState<string>(null)
-  const [endTime, setEndTime] = useState<string>(null)
+  const [startTime, setStartTime] = useState<string>('')
+  const [endTime, setEndTime] = useState<string>('')
 
   const onChangeStartTime = useCallback(
     (event: SelectChangeEvent) => setStartTime(event.target.value),
