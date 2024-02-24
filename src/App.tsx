@@ -5,11 +5,13 @@
 
 import React from 'react'
 import { Container, DatePicker } from './components'
+import { TimePicker } from './components/TimePicker'
 
 export const App: React.FC = () => {
   return (
     <Container>
       <DatePicker />
+      <TimePicker />
     </Container>
   )
 }

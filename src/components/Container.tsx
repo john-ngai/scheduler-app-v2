@@ -21,6 +21,7 @@ const styles: Record<string, SxProps<Theme>> = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    gap: 4,
   },
 }
 
