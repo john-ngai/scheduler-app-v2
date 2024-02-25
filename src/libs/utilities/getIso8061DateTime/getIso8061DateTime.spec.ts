@@ -10,7 +10,7 @@ import { GetIso8061DateTimeArgs, getIso8061DateTime } from './index'
 const year = 2024
 const monthIndex = 1
 const day = 25
-const hour = 9
+const hours = 9
 const minutes = 30
 
 // Command: npm test --test-file=getIso8061DateTime.spec.ts
@@ -20,7 +20,7 @@ describe('Function - getIso8061DateTime', () => {
       year,
       monthIndex,
       day,
-      hour,
+      hours,
     }
     const { iso8061DateTime } = getIso8061DateTime(args)
     const received = isValid(parseISO(iso8061DateTime))
@@ -31,7 +31,7 @@ describe('Function - getIso8061DateTime', () => {
       year,
       monthIndex,
       day,
-      hour,
+      hours,
       minutes,
       customTimeZone: 'America/Toronto',
     }
@@ -44,7 +44,7 @@ describe('Function - getIso8061DateTime', () => {
       year,
       monthIndex,
       day,
-      hour,
+      hours,
       minutes,
       customTimeZone: 'America/Vancouver',
     }

@@ -11,7 +11,7 @@ export interface GetIso8061DateTimeArgs {
   year: number
   monthIndex: number
   day: number
-  hour: number
+  hours: number
   minutes?: number
   seconds?: number
   customTimeZone?: string
@@ -24,14 +24,14 @@ export const getIso8061DateTime = ({
   year,
   monthIndex,
   day,
-  hour,
+  hours,
   minutes = 0,
   seconds = 0,
   customTimeZone,
 }: GetIso8061DateTimeArgs): { iso8061DateTime: string } => {
   const offset = getGmtOffsetMinutes(customTimeZone)
   const iso8061DateTime = parseISO(
-    formatISO(Date.UTC(year, monthIndex, day, hour, minutes - offset, seconds))
+    formatISO(Date.UTC(year, monthIndex, day, hours, minutes - offset, seconds))
   ).toISOString()
   return { iso8061DateTime }
 }
