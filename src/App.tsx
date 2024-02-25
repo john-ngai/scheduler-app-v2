@@ -4,8 +4,7 @@
  */
 
 import React from 'react'
-import { DatePicker } from './components'
-import { TimePicker } from './components/TimePicker'
+import { DatePicker, TimePicker } from './libs/components'
 import { Main } from './views'
 
 export const App: React.FC = () => {
