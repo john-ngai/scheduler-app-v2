@@ -2,9 +2,11 @@
  * Copyright (c) 2024 John Ngai
  * All Rights Reserved
  */
+/** */
 
 import { Box, SelectChangeEvent, SxProps, Theme } from '@mui/material'
 import React, { useCallback, useState } from 'react'
+import { timeSlots } from './constants'
 import { EndTimePicker, StartTimePicker } from './time-pickers'
 
 const styles: Record<string, SxProps<Theme>> = {
@@ -16,21 +18,28 @@ const styles: Record<string, SxProps<Theme>> = {
   },
 }
 
-const timeSlots = [
-  '9:00 AM',
-  '10:00 AM',
-  '11:00 AM',
-  '12:00 PM',
-  '1:00 PM',
-  '2:00 PM',
-  '3:00 PM',
-  '4:00 PM',
-  '5:00 PM',
-]
+const getInitialStartOptions = (): string[] => {
+  const options = timeSlots.map(({ label }) => label)
+  const lastIndex = options.indexOf('4:00 PM')
+  const filteredOptions = options.slice(0, lastIndex + 1)
+  return filteredOptions
+}
+
+const getInitialEndOptions = (): string[] => {
+  const options = timeSlots.map(({ label }) => label)
+  const startIndex = options.indexOf('9:30 AM')
+  const filteredOptions = options.slice(startIndex)
+  return filteredOptions
+}
 
 export const TimePicker: React.FC = () => {
   const [startTime, setStartTime] = useState<string>('')
   const [endTime, setEndTime] = useState<string>('')
+
+  const [startOptions, setStartOptions] = useState<string[]>(
+    getInitialStartOptions()
+  )
+  const [endOptions, setEndOptions] = useState<string[]>(getInitialEndOptions())
 
   const onChangeStartTime = useCallback(
     (event: SelectChangeEvent) => setStartTime(event.target.value),
@@ -46,12 +55,12 @@ export const TimePicker: React.FC = () => {
     <Box sx={styles.box}>
       <StartTimePicker
         value={startTime}
-        options={timeSlots}
+        options={startOptions}
         onChange={onChangeStartTime}
       />
       <EndTimePicker
         value={endTime}
-        options={timeSlots}
+        options={endOptions}
         onChange={onChangeEndTime}
       />
     </Box>
