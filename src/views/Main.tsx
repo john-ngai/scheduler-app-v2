@@ -2,6 +2,7 @@
  * Copyright (c) 2024 John Ngai
  * All Rights Reserved
  */
+/** */
 
 import { Box, Paper, SxProps, Theme } from '@mui/material'
 import React, { PropsWithChildren } from 'react'
@@ -25,13 +26,15 @@ const styles: Record<string, SxProps<Theme>> = {
   },
 }
 
-export const Container: React.FC<PropsWithChildren> = ({ children }) => {
+export const Main: React.FC<PropsWithChildren> = ({ children }) => {
   const { box, paper } = styles
   return (
-    <Box sx={box}>
-      <Paper sx={paper} elevation={3}>
-        {children}
-      </Paper>
-    </Box>
+    <main>
+      <Box sx={box}>
+        <Paper sx={paper} elevation={3}>
+          {children}
+        </Paper>
+      </Box>
+    </main>
   )
 }

@@ -4,14 +4,15 @@
  */
 
 import React from 'react'
-import { Container, DatePicker } from './components'
+import { DatePicker } from './components'
 import { TimePicker } from './components/TimePicker'
+import { Main } from './views'
 
 export const App: React.FC = () => {
   return (
-    <Container>
+    <Main>
       <DatePicker />
       <TimePicker />
-    </Container>
+    </Main>
   )
 }
