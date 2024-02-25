@@ -4,10 +4,10 @@
  */
 /** */
 
-import { Box, SelectChangeEvent, SxProps, Theme } from '@mui/material'
-import React, { useCallback, useState } from 'react'
-import { timeSlots } from './constants'
+import { Box, SxProps, Theme } from '@mui/material'
+import React from 'react'
 import { EndTimePicker, StartTimePicker } from './time-pickers'
+import { useTimePickerState } from './useTimePickerState'
 
 const styles: Record<string, SxProps<Theme>> = {
   box: {
@@ -18,38 +18,15 @@ const styles: Record<string, SxProps<Theme>> = {
   },
 }
 
-const getInitialStartOptions = (): string[] => {
-  const options = timeSlots.map(({ label }) => label)
-  const lastIndex = options.indexOf('4:00 PM')
-  const filteredOptions = options.slice(0, lastIndex + 1)
-  return filteredOptions
-}
-
-const getInitialEndOptions = (): string[] => {
-  const options = timeSlots.map(({ label }) => label)
-  const startIndex = options.indexOf('9:30 AM')
-  const filteredOptions = options.slice(startIndex)
-  return filteredOptions
-}
-
 export const TimePicker: React.FC = () => {
-  const [startTime, setStartTime] = useState<string>('')
-  const [endTime, setEndTime] = useState<string>('')
-
-  const [startOptions, setStartOptions] = useState<string[]>(
-    getInitialStartOptions()
-  )
-  const [endOptions, setEndOptions] = useState<string[]>(getInitialEndOptions())
-
-  const onChangeStartTime = useCallback(
-    (event: SelectChangeEvent) => setStartTime(event.target.value),
-    []
-  )
-
-  const onChangeEndTime = useCallback(
-    (event: SelectChangeEvent) => setEndTime(event.target.value),
-    []
-  )
+  const {
+    startTime,
+    endTime,
+    startOptions,
+    endOptions,
+    onChangeStartTime,
+    onChangeEndTime,
+  } = useTimePickerState()
 
   return (
     <Box sx={styles.box}>
