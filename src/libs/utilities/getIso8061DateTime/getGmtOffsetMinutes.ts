@@ -4,6 +4,9 @@
  */
 /** */
 
+/**
+ * Returns the long offset time zone name.
+ */
 const getTimeZoneName = (locale: string, timeZone: string): string => {
   const date = new Date()
   const timeZoneName = Intl.DateTimeFormat(locale, {
@@ -15,14 +18,25 @@ const getTimeZoneName = (locale: string, timeZone: string): string => {
   return timeZoneName
 }
 
-export const getGmtOffsetMinutes = (customTimeZone: string) => {
+const enum GmtOffsetStates {
+  Hours = 'HOURS',
+  Minutes = 'MINUTES',
+}
+
+const enum GmtOffsetTypes {
+  Idle = 'IDLE',
+  Add = 'ADD',
+  Subtract = 'SUBTRACT',
+}
+
+export const getGmtOffsetMinutes = (customTimeZone?: string): number => {
   const { locale, timeZone } = Intl.DateTimeFormat().resolvedOptions()
   const timeZoneName = getTimeZoneName(locale, customTimeZone ?? timeZone)
-
   const longGmtOffset = timeZoneName.split('GMT')[1]
+
   const gmtOffsetElements = {
-    state: 'HOURS',
-    type: null as string,
+    state: GmtOffsetStates.Hours,
+    type: GmtOffsetTypes.Idle,
     hours: '',
     minutes: '',
   }
@@ -31,20 +45,20 @@ export const getGmtOffsetMinutes = (customTimeZone: string) => {
     const character = longGmtOffset[i]
     switch (character) {
       case '+':
-        gmtOffsetElements.type = 'ADD'
+        gmtOffsetElements.type = GmtOffsetTypes.Add
         break
       case '-':
-        gmtOffsetElements.type = 'SUBTRACT'
+        gmtOffsetElements.type = GmtOffsetTypes.Subtract
         break
       case ':':
-        gmtOffsetElements.state = 'MINUTES'
+        gmtOffsetElements.state = GmtOffsetStates.Minutes
         break
       default: {
         const { state, hours, minutes } = gmtOffsetElements
-        if (state === 'HOURS') {
+        if (state === GmtOffsetStates.Hours) {
           gmtOffsetElements.hours = hours.concat(character)
         }
-        if (state === 'MINUTES') {
+        if (state === GmtOffsetStates.Minutes) {
           gmtOffsetElements.minutes = minutes.concat(character)
         }
       }
@@ -52,8 +66,11 @@ export const getGmtOffsetMinutes = (customTimeZone: string) => {
   }
 
   const { type, hours, minutes } = gmtOffsetElements
+
   let gmtOffsetMinutes = ''
-  if (type === 'SUBTRACT') gmtOffsetMinutes = gmtOffsetMinutes.concat('-')
+  if (type === GmtOffsetTypes.Subtract) {
+    gmtOffsetMinutes = gmtOffsetMinutes.concat('-')
+  }
   const totalMinutes = (Number(hours) * 60 + Number(minutes)).toString()
   gmtOffsetMinutes = gmtOffsetMinutes.concat(totalMinutes)
 

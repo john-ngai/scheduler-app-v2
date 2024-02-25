@@ -18,7 +18,7 @@ export interface GetIso8061DateTimeArgs {
 }
 
 /**
- * Returns the date and time in ISO 8061 format without an offset.
+ * Returns the date and time in ISO 8061 and formatted in UTC (no offset).
  */
 export const getIso8061DateTime = ({
   year,
