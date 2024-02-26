@@ -1,7 +1,6 @@
-/**
- * Copyright (c) 2024 John Ngai
+/* Copyright (c) 2024 John Ngai
  * All Rights Reserved
  */
-/** */
 
+export * from './types'
 export * from './useTimePickerState'

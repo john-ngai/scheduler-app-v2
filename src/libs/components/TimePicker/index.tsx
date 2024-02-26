@@ -1,8 +1,6 @@
-/**
- * Copyright (c) 2024 John Ngai
+/* Copyright (c) 2024 John Ngai
  * All Rights Reserved
  */
-/** */
 
 import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
@@ -31,13 +29,13 @@ export const TimePicker: React.FC = () => {
   return (
     <Box sx={styles.box}>
       <StartTimePicker
-        value={startTime}
-        options={startOptions}
+        selectedTimeSlot={startTime}
+        allTimeSlots={startOptions}
         onChange={onChangeStartTime}
       />
       <EndTimePicker
-        value={endTime}
-        options={endOptions}
+        selectedTimeSlot={endTime}
+        allTimeSlots={endOptions}
         onChange={onChangeEndTime}
       />
     </Box>
