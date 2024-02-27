@@ -1,11 +1,11 @@
-/* Copyright (c) 2024 John Ngai
+/*
+ * Copyright (c) 2024 John Ngai
  * All Rights Reserved
  */
 
 import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import { EndTimePicker, StartTimePicker } from './time-pickers'
-import { useTimePickerState } from './useTimePickerState'
+import { EndTimePicker, StartTimePicker, useTimePickerState } from './internals'
 
 const styles: Record<string, SxProps<Theme>> = {
   box: {

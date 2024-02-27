@@ -1,4 +1,5 @@
-/* Copyright (c) 2024 John Ngai
+/*
+ * Copyright (c) 2024 John Ngai
  * All Rights Reserved
  */
 
@@ -10,7 +11,7 @@ import {
   SelectChangeEvent,
 } from '@mui/material'
 import React, { memo } from 'react'
-import { TimeSlot } from './useTimePickerState'
+import { TimeSlot } from './types'
 
 interface TimePickerInternalProps {
   selectedTimeSlot: TimeSlot

@@ -1,8 +1,9 @@
-/* Copyright (c) 2024 John Ngai
+/*
+ * Copyright (c) 2024 John Ngai
  * All Rights Reserved
  */
 
-import { TimeSlot } from './types'
+import { TimeSlot } from '../../types'
 
 export const timeSlots: TimeSlot[] = [
   {

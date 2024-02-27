@@ -1,12 +1,16 @@
-/* Copyright (c) 2024 John Ngai
+/*
+ * Copyright (c) 2024 John Ngai
  * All Rights Reserved
  */
 
-import { SelectChangeEvent } from '@mui/material'
-import { useCallback, useState } from 'react'
-import { timeSlots } from './constants'
-import { TimePickerState, TimeSlot } from './types'
-import { useOptionsState } from './useOptionsState'
+import { useState } from 'react'
+import { TimePickerState, TimeSlot } from '../types'
+import {
+  timeSlots,
+  useFunctions,
+  useTimeSlots,
+  useValidatedTimeSlotState,
+} from './internals'
 
 interface GetTimeSlotByValuesArgs {
   timeSlots: TimeSlot[]
@@ -25,33 +29,33 @@ const getTimeSlotByValues = ({
   return filteredTimeSlots.find((timeSlot) => timeSlot.minutes === minutes)
 }
 
-const getTimeSlotByLabel = (timeSlots: TimeSlot[], label: string): TimeSlot =>
-  timeSlots.find((timeSlot) => timeSlot.label === label)
-
 const initialStartTime = getTimeSlotByValues({
   timeSlots,
   hours: 9,
   minutes: 0,
 })
+
 const initialEndTime = getTimeSlotByValues({ timeSlots, hours: 9, minutes: 30 })
 
 export const useTimePickerState = (): TimePickerState => {
   const [startTimeSlot, setStartTime] = useState<TimeSlot>(initialStartTime)
   const [endTimeSlot, setEndTime] = useState<TimeSlot>(initialEndTime)
 
-  const { startTimeSlots, endTimeSlots } = useOptionsState()
+  useValidatedTimeSlotState({
+    timeSlots,
+    startTimeSlot,
+    endTimeSlot,
+    setStartTime,
+    setEndTime,
+  })
 
-  const onChangeStartTime = useCallback((event: SelectChangeEvent) => {
-    const label = event.target.value
-    const timeSlot = getTimeSlotByLabel(timeSlots, label)
-    setStartTime(timeSlot)
-  }, [])
+  const { startTimeSlots, endTimeSlots } = useTimeSlots()
 
-  const onChangeEndTime = useCallback((event: SelectChangeEvent) => {
-    const label = event.target.value
-    const timeSlot = getTimeSlotByLabel(timeSlots, label)
-    setEndTime(timeSlot)
-  }, [])
+  const { onChangeStartTime, onChangeEndTime } = useFunctions({
+    timeSlots,
+    setStartTime,
+    setEndTime,
+  })
 
   return {
     startTimeSlot,
