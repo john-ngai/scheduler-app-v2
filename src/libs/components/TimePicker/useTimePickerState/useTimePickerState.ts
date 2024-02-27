@@ -36,10 +36,10 @@ const initialStartTime = getTimeSlotByValues({
 const initialEndTime = getTimeSlotByValues({ timeSlots, hours: 9, minutes: 30 })
 
 export const useTimePickerState = (): TimePickerState => {
-  const [startTime, setStartTime] = useState<TimeSlot>(initialStartTime)
-  const [endTime, setEndTime] = useState<TimeSlot>(initialEndTime)
+  const [startTimeSlot, setStartTime] = useState<TimeSlot>(initialStartTime)
+  const [endTimeSlot, setEndTime] = useState<TimeSlot>(initialEndTime)
 
-  const { startOptions, endOptions } = useOptionsState()
+  const { startTimeSlots, endTimeSlots } = useOptionsState()
 
   const onChangeStartTime = useCallback((event: SelectChangeEvent) => {
     const label = event.target.value
@@ -54,10 +54,10 @@ export const useTimePickerState = (): TimePickerState => {
   }, [])
 
   return {
-    startTime,
-    endTime,
-    startOptions,
-    endOptions,
+    startTimeSlot,
+    endTimeSlot,
+    startTimeSlots,
+    endTimeSlots,
     onChangeStartTime,
     onChangeEndTime,
   }

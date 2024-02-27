@@ -18,10 +18,10 @@ const styles: Record<string, SxProps<Theme>> = {
 
 export const TimePicker: React.FC = () => {
   const {
-    startTime,
-    endTime,
-    startOptions,
-    endOptions,
+    startTimeSlot,
+    endTimeSlot,
+    startTimeSlots,
+    endTimeSlots,
     onChangeStartTime,
     onChangeEndTime,
   } = useTimePickerState()
@@ -29,13 +29,13 @@ export const TimePicker: React.FC = () => {
   return (
     <Box sx={styles.box}>
       <StartTimePicker
-        selectedTimeSlot={startTime}
-        allTimeSlots={startOptions}
+        selectedTimeSlot={startTimeSlot}
+        allTimeSlots={startTimeSlots}
         onChange={onChangeStartTime}
       />
       <EndTimePicker
-        selectedTimeSlot={endTime}
-        allTimeSlots={endOptions}
+        selectedTimeSlot={endTimeSlot}
+        allTimeSlots={endTimeSlots}
         onChange={onChangeEndTime}
       />
     </Box>

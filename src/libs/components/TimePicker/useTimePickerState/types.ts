@@ -11,10 +11,10 @@ export interface TimeSlot {
 }
 
 export interface TimePickerState {
-  startTime: TimeSlot
-  endTime: TimeSlot
-  startOptions: TimeSlot[]
-  endOptions: TimeSlot[]
+  startTimeSlot: TimeSlot
+  endTimeSlot: TimeSlot
+  startTimeSlots: TimeSlot[]
+  endTimeSlots: TimeSlot[]
   onChangeStartTime: (event: SelectChangeEvent) => void
   onChangeEndTime: (event: SelectChangeEvent) => void
 }

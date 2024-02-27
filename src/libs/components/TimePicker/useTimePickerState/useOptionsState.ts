@@ -2,7 +2,7 @@
  * All Rights Reserved
  */
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { timeSlots } from './constants'
 import { TimePickerState, TimeSlot } from './types'
 
@@ -20,16 +20,18 @@ const getInitialEndOptions = (): TimeSlot[] => {
   return filteredOptions
 }
 
-type OptionsState = Pick<TimePickerState, 'startOptions' | 'endOptions'>
+type OptionsState = Pick<TimePickerState, 'startTimeSlots' | 'endTimeSlots'>
 
 export const useOptionsState = (): OptionsState => {
-  const [startOptions, setStartOptions] = useState<TimeSlot[]>(
+  const [startTimeSlots, setStartOptions] = useState<TimeSlot[]>(
     getInitialStartOptions()
   )
 
-  const [endOptions, setEndOptions] = useState<TimeSlot[]>(
+  const [endTimeSlots, setEndOptions] = useState<TimeSlot[]>(
     getInitialEndOptions()
   )
 
-  return { startOptions, endOptions }
+  // useEffect(() => {}, [])
+
+  return { startTimeSlots, endTimeSlots }
 }
