@@ -3,4 +3,4 @@
  * All Rights Reserved
  */
 
-export * from './main'
+export * from './Main'

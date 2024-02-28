@@ -1,12 +1,11 @@
-/**
+/*
  * Copyright (c) 2024 John Ngai
  * All Rights Reserved
  */
-/** */
 
 import { Box, Paper, SxProps, Theme } from '@mui/material'
-import React, { PropsWithChildren } from 'react'
-import { DatePicker, TimePicker } from '../libs/components'
+import React from 'react'
+import { DatePicker, TimePicker } from '../../libs/components'
 
 const styles: Record<string, SxProps<Theme>> = {
   box: {
@@ -29,6 +28,7 @@ const styles: Record<string, SxProps<Theme>> = {
 
 export const Main: React.FC = () => {
   const { box, paper } = styles
+
   return (
     <main>
       <Box sx={box}>
