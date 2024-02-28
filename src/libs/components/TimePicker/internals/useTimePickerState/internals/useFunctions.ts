@@ -5,7 +5,7 @@
 
 import { SelectChangeEvent } from '@mui/material'
 import { useCallback } from 'react'
-import { TimeSlot } from '../../types'
+import { TimeSlot } from '../../../types/public'
 
 const getTimeSlotByLabel = (timeSlots: TimeSlot[], label: string): TimeSlot =>
   timeSlots.find((timeSlot) => timeSlot.label === label)

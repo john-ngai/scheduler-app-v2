@@ -3,7 +3,7 @@
  * All Rights Reserved
  */
 
-import { TimeSlot } from '../../types'
+import { TimeSlot } from '../../../types/public'
 
 export const timeSlots: TimeSlot[] = [
   {

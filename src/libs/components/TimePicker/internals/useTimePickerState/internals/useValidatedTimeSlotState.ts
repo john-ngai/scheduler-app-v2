@@ -4,7 +4,7 @@
  */
 
 import { useEffect } from 'react'
-import { TimeSlot } from '../../types'
+import { TimeSlot } from '../../../types/public'
 
 interface Args {
   timeSlots: TimeSlot[]

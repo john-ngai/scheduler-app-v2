@@ -4,12 +4,7 @@
  */
 
 import { SelectChangeEvent } from '@mui/material'
-
-export interface TimeSlot {
-  label: string
-  hours: number
-  minutes: number
-}
+import { TimeSlot } from '../types/public'
 
 export interface TimePickerState {
   startTimeSlot: TimeSlot

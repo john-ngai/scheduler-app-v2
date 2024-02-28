@@ -11,7 +11,7 @@ import {
   SelectChangeEvent,
 } from '@mui/material'
 import React, { memo } from 'react'
-import { TimeSlot } from './types'
+import { TimeSlot } from '../types/public'
 
 interface TimePickerInternalProps {
   selectedTimeSlot: TimeSlot

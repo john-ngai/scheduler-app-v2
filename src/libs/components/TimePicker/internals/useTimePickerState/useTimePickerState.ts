@@ -4,7 +4,8 @@
  */
 
 import { useState } from 'react'
-import { TimePickerState, TimeSlot } from '../types'
+import { TimeSlot } from '../../types/public'
+import { TimePickerState } from '../types'
 import {
   timeSlots,
   useFunctions,
