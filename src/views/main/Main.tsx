@@ -6,6 +6,7 @@
 import { Box, Paper, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { DatePicker, TimePicker } from '../../libs/components'
+import { allTimeSlots } from './constants'
 
 const styles: Record<string, SxProps<Theme>> = {
   box: {
@@ -34,7 +35,7 @@ export const Main: React.FC = () => {
       <Box sx={box}>
         <Paper sx={paper} elevation={3}>
           <DatePicker />
-          <TimePicker />
+          <TimePicker allTimeSlots={allTimeSlots} />
         </Paper>
       </Box>
     </main>

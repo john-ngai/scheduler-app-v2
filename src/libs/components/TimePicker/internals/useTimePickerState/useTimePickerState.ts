@@ -3,57 +3,74 @@
  * All Rights Reserved
  */
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { TimeSlot } from '../../types/public'
 import { TimePickerState } from '../types'
 import {
-  timeSlots,
   useFunctions,
   useTimeSlots,
   useValidatedTimeSlotState,
 } from './internals'
 
 interface GetTimeSlotByValuesArgs {
-  timeSlots: TimeSlot[]
+  allTimeSlots: TimeSlot[]
   hours: number
   minutes: number
 }
 
 const getTimeSlotByValues = ({
-  timeSlots,
+  allTimeSlots,
   hours,
   minutes,
 }: GetTimeSlotByValuesArgs): TimeSlot => {
-  const filteredTimeSlots = timeSlots.filter(
+  const filteredTimeSlots = allTimeSlots.filter(
     (timeSlot) => timeSlot.hours === hours
   )
   return filteredTimeSlots.find((timeSlot) => timeSlot.minutes === minutes)
 }
 
-const initialStartTime = getTimeSlotByValues({
-  timeSlots,
-  hours: 9,
-  minutes: 0,
-})
+interface UseTimePickerStateArgs {
+  allTimeSlots: TimeSlot[]
+}
 
-const initialEndTime = getTimeSlotByValues({ timeSlots, hours: 9, minutes: 30 })
+export const useTimePickerState = ({
+  allTimeSlots,
+}: UseTimePickerStateArgs): TimePickerState => {
+  const initialStartTime = useMemo(
+    () =>
+      getTimeSlotByValues({
+        allTimeSlots,
+        hours: 9,
+        minutes: 0,
+      }),
+    [allTimeSlots]
+  )
 
-export const useTimePickerState = (): TimePickerState => {
+  const initialEndTime = useMemo(
+    () =>
+      getTimeSlotByValues({
+        allTimeSlots,
+        hours: 9,
+        minutes: 30,
+      }),
+    [allTimeSlots]
+  )
+
   const [startTimeSlot, setStartTime] = useState<TimeSlot>(initialStartTime)
   const [endTimeSlot, setEndTime] = useState<TimeSlot>(initialEndTime)
 
   useValidatedTimeSlotState({
-    timeSlots,
+    allTimeSlots,
     startTimeSlot,
     endTimeSlot,
     setStartTime,
     setEndTime,
   })
 
-  const { startTimeSlots, endTimeSlots } = useTimeSlots()
+  const { startTimeSlots, endTimeSlots } = useTimeSlots({ allTimeSlots })
 
   const { onChangeStartTime, onChangeEndTime } = useFunctions({
-    timeSlots,
+    allTimeSlots,
     setStartTime,
     setEndTime,
   })

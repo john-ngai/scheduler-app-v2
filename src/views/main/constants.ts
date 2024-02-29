@@ -3,9 +3,9 @@
  * All Rights Reserved
  */
 
-import { TimeSlot } from '../../../types/public'
+import { TimeSlot } from '../../libs/components'
 
-export const timeSlots: TimeSlot[] = [
+export const allTimeSlots: TimeSlot[] = [
   {
     label: '9:00 AM',
     hours: 9,

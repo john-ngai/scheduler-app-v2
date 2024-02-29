@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 import { TimeSlot } from '../../../types/public'
 
 interface Args {
-  timeSlots: TimeSlot[]
+  allTimeSlots: TimeSlot[]
   startTimeSlot: TimeSlot
   endTimeSlot: TimeSlot
   setStartTime: React.Dispatch<React.SetStateAction<TimeSlot>>
@@ -19,13 +19,13 @@ interface Args {
  * less than the start time slot.
  */
 export const useValidatedTimeSlotState = ({
-  timeSlots,
+  allTimeSlots,
   startTimeSlot,
   endTimeSlot,
   setStartTime,
   setEndTime,
 }: Args): void => {
-  const timeSlotLabels = timeSlots.map(({ label }) => label)
+  const timeSlotLabels = allTimeSlots.map(({ label }) => label)
   const { label: startTimeSlotLabel } = startTimeSlot
   const { label: endTimeSlotLabel } = endTimeSlot
 
@@ -35,10 +35,10 @@ export const useValidatedTimeSlotState = ({
   useEffect(() => {
     if (startIndex >= endIndex) {
       const nextIndex = startIndex + 1
-      setEndTime(timeSlots[nextIndex])
+      setEndTime(allTimeSlots[nextIndex])
     } else if (endIndex <= startIndex) {
       const previousIndex = endIndex - 1
-      setStartTime(timeSlots[previousIndex])
+      setStartTime(allTimeSlots[previousIndex])
     }
-  }, [startIndex, endIndex, setEndTime, setStartTime, timeSlots])
+  }, [startIndex, endIndex, setEndTime, setStartTime, allTimeSlots])
 }

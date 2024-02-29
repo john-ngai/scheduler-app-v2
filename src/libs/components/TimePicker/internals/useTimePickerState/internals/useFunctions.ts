@@ -7,11 +7,13 @@ import { SelectChangeEvent } from '@mui/material'
 import { useCallback } from 'react'
 import { TimeSlot } from '../../../types/public'
 
-const getTimeSlotByLabel = (timeSlots: TimeSlot[], label: string): TimeSlot =>
-  timeSlots.find((timeSlot) => timeSlot.label === label)
+const getTimeSlotByLabel = (
+  allTimeSlots: TimeSlot[],
+  label: string
+): TimeSlot => allTimeSlots.find((timeSlot) => timeSlot.label === label)
 
 interface Args {
-  timeSlots: TimeSlot[]
+  allTimeSlots: TimeSlot[]
   setStartTime: React.Dispatch<React.SetStateAction<TimeSlot>>
   setEndTime: React.Dispatch<React.SetStateAction<TimeSlot>>
 }
@@ -22,26 +24,26 @@ interface Functions {
 }
 
 export const useFunctions = ({
-  timeSlots,
+  allTimeSlots,
   setStartTime,
   setEndTime,
 }: Args): Functions => {
   const onChangeStartTime = useCallback(
     (event: SelectChangeEvent) => {
       const label = event.target.value
-      const timeSlot = getTimeSlotByLabel(timeSlots, label)
+      const timeSlot = getTimeSlotByLabel(allTimeSlots, label)
       setStartTime(timeSlot)
     },
-    [timeSlots, setStartTime]
+    [allTimeSlots, setStartTime]
   )
 
   const onChangeEndTime = useCallback(
     (event: SelectChangeEvent) => {
       const label = event.target.value
-      const timeSlot = getTimeSlotByLabel(timeSlots, label)
+      const timeSlot = getTimeSlotByLabel(allTimeSlots, label)
       setEndTime(timeSlot)
     },
-    [timeSlots, setEndTime]
+    [allTimeSlots, setEndTime]
   )
 
   return { onChangeStartTime, onChangeEndTime }

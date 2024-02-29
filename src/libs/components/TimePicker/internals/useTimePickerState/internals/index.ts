@@ -3,7 +3,6 @@
  * All Rights Reserved
  */
 
-export * from './constants'
 export * from './useFunctions'
 export * from './useTimeSlots'
 export * from './useValidatedTimeSlotState'

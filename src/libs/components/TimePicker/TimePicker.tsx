@@ -6,6 +6,7 @@
 import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { EndTimePicker, StartTimePicker, useTimePickerState } from './internals'
+import { TimePickerProps } from './types/public'
 
 const styles: Record<string, SxProps<Theme>> = {
   box: {
@@ -16,7 +17,9 @@ const styles: Record<string, SxProps<Theme>> = {
   },
 }
 
-export const TimePicker: React.FC = () => {
+export const TimePicker: React.FC<Partial<TimePickerProps>> = ({
+  allTimeSlots,
+}) => {
   const {
     startTimeSlot,
     endTimeSlot,
@@ -24,7 +27,7 @@ export const TimePicker: React.FC = () => {
     endTimeSlots,
     onChangeStartTime,
     onChangeEndTime,
-  } = useTimePickerState()
+  } = useTimePickerState({ allTimeSlots })
 
   return (
     <Box sx={styles.box}>
