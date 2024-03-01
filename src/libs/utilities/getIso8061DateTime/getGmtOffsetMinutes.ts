@@ -1,8 +1,7 @@
-/**
+/*
  * Copyright (c) 2024 John Ngai
  * All Rights Reserved
  */
-/** */
 
 /**
  * Returns the long offset time zone name.

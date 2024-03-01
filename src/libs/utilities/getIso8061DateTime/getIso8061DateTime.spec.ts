@@ -1,11 +1,13 @@
-/**
+/*
  * Copyright (c) 2024 John Ngai
  * All Rights Reserved
  */
-/** */
 
 import { isValid, parseISO } from 'date-fns'
-import { GetIso8061DateTimeArgs, getIso8061DateTime } from './index'
+import {
+  GetIso8061DateTimeArgs,
+  getIso8061DateTime,
+} from './getIso8061DateTime'
 
 const year = 2024
 const monthIndex = 1
