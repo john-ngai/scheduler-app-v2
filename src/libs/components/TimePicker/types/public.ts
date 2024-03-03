@@ -9,10 +9,17 @@ export interface TimeSlot {
   minutes: number
 }
 
+export interface SelectedTimeSlots {
+  start: TimeSlot
+  end: TimeSlot
+}
+
+type SetSelectedTimeSlots = React.Dispatch<
+  React.SetStateAction<SelectedTimeSlots>
+>
+
 export interface TimePickerProps {
   allTimeSlots: TimeSlot[]
-  startTimeSlot: TimeSlot
-  endTimeSlot: TimeSlot
-  setStartTimeSlot: React.Dispatch<React.SetStateAction<TimeSlot>>
-  setEndTimeSlot: React.Dispatch<React.SetStateAction<TimeSlot>>
+  selectedTimeSlots: SelectedTimeSlots
+  setSelectedTimeSlots: SetSelectedTimeSlots
 }

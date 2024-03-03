@@ -12,6 +12,7 @@ import {
   initialDatePickerElements,
 } from '../../libs/components'
 import { allTimeSlots } from './constants'
+import { useTimePickerProps } from './useTimePickerProps'
 
 const styles: Record<string, SxProps<Theme>> = {
   box: {
@@ -34,9 +35,15 @@ const styles: Record<string, SxProps<Theme>> = {
 
 export const Main: React.FC = () => {
   const { box, paper } = styles
+
   const [dateElements, setDateElements] = useState<DatePickerElements>(
     initialDatePickerElements
   )
+
+  const { selectedTimeSlots, setSelectedTimeSlots } = useTimePickerProps({
+    allTimeSlots,
+  })
+
   return (
     <main>
       <Box sx={box}>
@@ -45,7 +52,11 @@ export const Main: React.FC = () => {
             dateElements={dateElements}
             setDateElements={setDateElements}
           />
-          <TimePicker allTimeSlots={allTimeSlots} />
+          <TimePicker
+            allTimeSlots={allTimeSlots}
+            selectedTimeSlots={selectedTimeSlots}
+            setSelectedTimeSlots={setSelectedTimeSlots}
+          />
         </Paper>
       </Box>
     </main>
