@@ -4,8 +4,13 @@
  */
 
 import { Box, Paper, SxProps, Theme } from '@mui/material'
-import React from 'react'
-import { DatePicker, TimePicker } from '../../libs/components'
+import React, { useState } from 'react'
+import {
+  DatePicker,
+  DatePickerElements,
+  TimePicker,
+  initialDatePickerElements,
+} from '../../libs/components'
 import { allTimeSlots } from './constants'
 
 const styles: Record<string, SxProps<Theme>> = {
@@ -29,12 +34,17 @@ const styles: Record<string, SxProps<Theme>> = {
 
 export const Main: React.FC = () => {
   const { box, paper } = styles
-
+  const [dateElements, setDateElements] = useState<DatePickerElements>(
+    initialDatePickerElements
+  )
   return (
     <main>
       <Box sx={box}>
         <Paper sx={paper} elevation={3}>
-          <DatePicker />
+          <DatePicker
+            dateElements={dateElements}
+            setDateElements={setDateElements}
+          />
           <TimePicker allTimeSlots={allTimeSlots} />
         </Paper>
       </Box>
