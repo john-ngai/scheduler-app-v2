@@ -14,8 +14,8 @@ const getTimeSlotByLabel = (
 
 interface Args {
   allTimeSlots: TimeSlot[]
-  setStartTime: React.Dispatch<React.SetStateAction<TimeSlot>>
-  setEndTime: React.Dispatch<React.SetStateAction<TimeSlot>>
+  setStartTime: (timeSlot: TimeSlot) => void
+  setEndTime: (timeSlot: TimeSlot) => void
 }
 
 interface Functions {

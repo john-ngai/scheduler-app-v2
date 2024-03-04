@@ -10,8 +10,8 @@ interface Args {
   allTimeSlots: TimeSlot[]
   startTimeSlot: TimeSlot
   endTimeSlot: TimeSlot
-  setStartTime: React.Dispatch<React.SetStateAction<TimeSlot>>
-  setEndTime: React.Dispatch<React.SetStateAction<TimeSlot>>
+  setStartTime: (timeSlot: TimeSlot) => void
+  setEndTime: (timeSlot: TimeSlot) => void
 }
 
 /**

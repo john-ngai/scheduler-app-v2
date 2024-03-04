@@ -17,8 +17,10 @@ const styles: Record<string, SxProps<Theme>> = {
   },
 }
 
-export const TimePicker: React.FC<Partial<TimePickerProps>> = ({
+export const TimePicker: React.FC<TimePickerProps> = ({
   allTimeSlots,
+  selectedTimeSlots,
+  setSelectedTimeSlots,
 }) => {
   const {
     startTimeSlot,
@@ -27,7 +29,11 @@ export const TimePicker: React.FC<Partial<TimePickerProps>> = ({
     endTimeSlots,
     onChangeStartTime,
     onChangeEndTime,
-  } = useTimePickerState({ allTimeSlots })
+  } = useTimePickerState({
+    allTimeSlots,
+    selectedTimeSlots,
+    setSelectedTimeSlots,
+  })
 
   return (
     <Box sx={styles.box}>
