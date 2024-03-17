@@ -12,6 +12,7 @@ import {
   initialDatePickerElements,
 } from '../../libs/components'
 import { allTimeSlots } from './constants'
+import { useDateTime } from './useDateTime'
 import { useTimePickerProps } from './useTimePickerProps'
 
 const styles: Record<string, SxProps<Theme>> = {
@@ -43,6 +44,24 @@ export const Main: React.FC = () => {
   const { selectedTimeSlots, setSelectedTimeSlots } = useTimePickerProps({
     allTimeSlots,
   })
+
+  const { year, monthIndex, day } = dateElements
+  const {
+    start: { hours: startHours, minutes: startMinutes },
+    end: { hours: endHours, minutes: endMinutes },
+  } = selectedTimeSlots
+
+  const { startDateTime, endDateTime } = useDateTime({
+    year,
+    monthIndex,
+    day,
+    startHours,
+    startMinutes,
+    endHours,
+    endMinutes,
+  })
+
+  console.log('date time =', { startDateTime, endDateTime })
 
   return (
     <main>
